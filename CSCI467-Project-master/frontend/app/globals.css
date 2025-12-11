@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --card-bg: #ffffff;
+  --muted: #6b7280; /* gray-500 */
+  --muted-2: #374151; /* gray-700 */
+  --border-color: #e5e7eb; /* gray-200 */
+  --shadow-color: rgba(15, 23, 42, 0.06);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --card-bg: #0f1724; /* dark slate-ish for cards */
+    --muted: #9ca3af; /* lighter muted */
+    --muted-2: #d1d5db;
+    --border-color: #1f2937; /* gray-800 */
+    --shadow-color: rgba(2, 6, 23, 0.7);
+  }
+
+  /* Override some common Tailwind utility classes so components built with those classes look correct in dark mode. */
+  .bg-white { background-color: var(--card-bg) !important; }
+  .text-gray-500 { color: var(--muted) !important; }
+  .text-gray-700 { color: var(--muted-2) !important; }
+  .border { border-color: var(--border-color) !important; }
+  .shadow { box-shadow: 0 1px 3px var(--shadow-color) !important; }
+
+  /* Buttons using color utilities: keep high contrast in dark mode */
+  .bg-green-600 { background-color: #16a34a !important; }
+  .bg-red-500 { background-color: #dc2626 !important; }
+  .bg-white.text-right { color: var(--foreground) !important; }
+
+  /* Ensure card text remains readable */
+  .bg-white :is(h1,h2,h3,h4,p,div,span,strong) { color: var(--foreground) !important; }
+
+  /* Disabled opacity for buttons */
+  .disabled\:opacity-50:disabled { opacity: 0.5 !important; }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
